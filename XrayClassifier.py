@@ -17,6 +17,7 @@ import seaborn as sns
 traindir = 'train'
 testdir = 'test'
 batch_size = 64
+#0.8939393758773804
 
 class XrayClassifier:
     def __init__(self, traindir, testdir, batch_size):
@@ -57,6 +58,8 @@ class XrayClassifier:
         self.model.add(layers.MaxPooling2D(2, 2))
         self.model.add(layers.Conv2D(16, (3, 3), activation="relu"))
         self.model.add(layers.MaxPooling2D(2, 2))
+        self.model.add(layers.Conv2D(32, (3, 3), activation="relu"))
+        self.model.add(layers.MaxPooling2D(2, 2))
         self.model.add(layers.Dropout(0.2))
         self.model.add(layers.Flatten())
         self.model.add(layers.Dense(16, activation='relu'))
@@ -84,13 +87,6 @@ class XrayClassifier:
     	loss, accuracy = self.model.evaluate(self.testing_iterator)
     	print("Model Loss:", loss)
     	print("Model Accuracy:", accuracy)
-    	prediction = self.model.predict(self.testing_iterator)
-    	labels = []
-    	for _ in range(len(self.testing_iterator)):
-    		_, label = self.testing_iterator.next()
-    		labels.extend(label)
-    	r2 = r2_score(labels, prediction)
-    	#print("R-Squared:", r2)
 
     def predict(self, image):
         img = load_img(image, target_size=(256,256), color_mode='grayscale')
@@ -146,17 +142,19 @@ class XrayClassifier:
     	plt.title('Confusion Matrix')
     	plt.show()
 
+    def on_train_end(self):
+        self.model.save('model.h5')
 
-
-image = 'testpredict.png'
+image = 'pneumonia.png'
 
 model = XrayClassifier(traindir, testdir, batch_size)
 model.create_data_generators()
 model.build_model()
 model.train_model()
 model.evaluate_model()
-model.predict(image)
-model.plot_epoch_accuracy()
-model.plot_epoch_loss()
-model.plot_prediction_actual()
+model.on_train_end()
+#model.predict(image)
+#model.plot_epoch_accuracy()
+#model.plot_epoch_loss()
+#model.plot_prediction_actual()
 
