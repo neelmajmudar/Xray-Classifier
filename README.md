@@ -59,6 +59,9 @@ Xray Classifier follows a structured ML pipeline:
 
 ---
 
+App Demo:
+![XrayPredictionApp](https://github.com/neelmajmudar/Xray-Classifier/assets/142572400/993cf248-74e8-4cd1-9121-3a5c278463d5)
+
 ## Example Usage
 
 ```bash
@@ -77,5 +80,3 @@ python evaluate.py --model_path ./models/resnet18_best.pth
 python predict.py --image ./samples/patient_xray.jpg --model ./models/resnet18_best.pth
 
 
-App Demo:
-![XrayPredictionApp](https://github.com/neelmajmudar/Xray-Classifier/assets/142572400/993cf248-74e8-4cd1-9121-3a5c278463d5)
