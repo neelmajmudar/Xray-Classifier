@@ -2,7 +2,7 @@
 
 ## About
 
-Xray Classifier is a deep learning-powered tool for detecting abnormalities in chest X-ray images. Built with Convolutional Neural Networks (CNNs) and trained on labeled medical datasets, this model helps automate the identification of thoracic pathologies such as pneumonia, fibrosis, or pleural effusion.
+Xray Classifier is a deep learning-powered tool for detecting abnormalities in chest X-ray images. Built with Convolutional Neural Networks (CNNs) and trained on labeled medical datasets, this model helps automate the identification of pathologies such as pneumonia, COVID-19, or None.
 
 It aims to support radiologists and healthcare professionals by providing rapid image classification that can assist in triaging or flagging critical cases.
 
